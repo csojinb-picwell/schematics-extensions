@@ -28,6 +28,11 @@ class NumericStringTypeTest(unittest.TestCase):
         self.assertInvalidWith('123456789012')
         self.assertInvalidWith('1234567890')
 
+    def test_length_parameter_optional(self):
+        class ModelForTesting(Model):
+            numeric_string = NumericStringType()
+        ModelForTesting({'numeric_string': '1234'}).validate()
+
     def test_not_required_by_default(self):
         class ModelForTesting(Model):
             numeric_string = NumericStringType(length=11)
